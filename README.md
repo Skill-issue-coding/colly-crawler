@@ -4,7 +4,7 @@ sandbox for a scraper/crawler in go with colly to scrape https://studieinfo.liu.
 
 ## 🛠️ Prerequisites
 
-- Go 1.20+ ([Installation guide](#install-go))
+- Go 1.20+ ([Installation guide](https://go.dev/doc/install))
 - Git (for version control)
 
 ---
