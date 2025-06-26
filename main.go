@@ -30,11 +30,13 @@ func main() {
 		fmt.Println(e.Text)
 	}) */
 
-	// Test to print button name "Programplan"
-	c.OnHTML("button.tabs-nav__link[data-bs-target='#curriculum']", func(e *colly.HTMLElement) {
-		fmt.Println("\nFound Curriculum Button:")
-		fmt.Println("Button Text:", e.Text)
-		fmt.Println("Data Target:", e.Attr("data-bs-target"))
+	// Print semesters on "Programplan" page
+	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
+		fmt.Println("\nFound Syllabus Section:")
+
+		e.ForEach("h3", func(_ int, h3 *colly.HTMLElement) {
+			fmt.Printf("H3: %s\n", h3.Text)
+		})
 	})
 
 	c.Visit("https://studieinfo.liu.se/program/6CMEN/5712#overview")
