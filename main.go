@@ -7,6 +7,17 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
+type Semester struct {
+	name string `json:"name"`
+}
+
+type Program struct {
+	name       string     `json:"name"`
+	credits    string     `json:"credits"`
+	url        string     `json:"url"`
+	semsesters []Semester `json:"semsesters"`
+}
+
 func main() {
 
 	// Create a new collector
