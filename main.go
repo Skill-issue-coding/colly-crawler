@@ -1,24 +1,28 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
+	"os"
 	"strings"
 
 	"github.com/gocolly/colly/v2"
 )
 
 type Semester struct {
-	name string `json:"name"`
+	Name string `json:"name"`
 }
 
 type Program struct {
-	name       string     `json:"name"`
-	credits    string     `json:"credits"`
-	url        string     `json:"url"`
-	semsesters []Semester `json:"semsesters"`
+	Name      string     `json:"name"`
+	Credits   string     `json:"credits"`
+	Url       string     `json:"url"`
+	Semesters []Semester `json:"semsesters"`
 }
 
 func main() {
+	program := Program{}
 
 	// Create a new collector
 	c := colly.NewCollector(
@@ -28,38 +32,53 @@ func main() {
 
 	// Print visited URLs
 	c.OnRequest(func(r *colly.Request) {
+		program.Url = r.URL.String()
 		fmt.Println("Visiting:", r.URL.String())
 	})
 
-	var currentProgram, currentCredits string
-
 	// Capture h1 separately (async)
 	c.OnHTML("h1", func(e *colly.HTMLElement) {
-		parts := strings.Split(strings.TrimSpace(e.Text), ",")
+		parts := strings.SplitN(strings.TrimSpace(e.Text), ",", 2)
 		if len(parts) >= 2 {
-			currentProgram = strings.TrimSpace(parts[0])
-			currentCredits = strings.TrimSpace(parts[1])
+			program.Name = strings.TrimSpace(parts[0])
+			if len(parts) >= 2 {
+				program.Credits = strings.TrimSpace(parts[1])
+			}
 		}
 	})
 
 	// Handle "Programplan" page
 	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
-		fmt.Println("\n Curriculum section:")
-
-		// Print URL
-		currentURL := e.Request.URL.String()
-		fmt.Println("\nCurrent Page URL:", currentURL)
-
-		// Print program and credits
-		if currentProgram != "" {
-			fmt.Printf("Program: %s\nCredits: %s\n", currentProgram, currentCredits)
-		}
-
-		// Loop and print all semsesters
 		e.ForEach("h3", func(_ int, h3 *colly.HTMLElement) {
-			fmt.Printf("H3: %s\n", h3.Text)
+			program.Semesters = append(program.Semesters, Semester{
+				Name: strings.TrimSpace(h3.Text),
+			})
 		})
 	})
 
-	c.Visit("https://studieinfo.liu.se/program/6CMEN/5712#overview")
+	// Error handling
+	c.OnError(func(r *colly.Response, err error) {
+		log.Println("Error:", err)
+	})
+
+	// Start the scraping process
+	err := c.Visit("https://studieinfo.liu.se/program/6CMEN/5712#overview")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Convert the program data to JSON
+	jsonData, err := json.MarshalIndent(program, "", "  ")
+	if err != nil {
+		log.Fatal("JSON marshaling error:", err)
+	}
+
+	// Save to file
+	err = os.WriteFile("program_data.json", jsonData, 0644)
+	if err != nil {
+		log.Fatal("File write error:", err)
+	}
+
+	fmt.Println("\nScraping complete! Data saved to program_data.json")
+	fmt.Println(string(jsonData)) // Print to console for verification
 }
