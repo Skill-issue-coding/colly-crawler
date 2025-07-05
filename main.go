@@ -10,8 +10,15 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
+type Course struct {
+	Name    string `json:"name"`
+	Credits string `json:"credits"`
+	Url     string `json:"url"`
+}
+
 type Semester struct {
-	Name string `json:"name"`
+	Name    string   `json:"name"`
+	Courses []Course `json:"courses"`
 }
 
 type Program struct {
@@ -23,6 +30,8 @@ type Program struct {
 
 func main() {
 	program := Program{}
+
+	semester := Semester{}
 
 	// Create a new collector
 	c := colly.NewCollector(
@@ -53,6 +62,13 @@ func main() {
 			program.Semesters = append(program.Semesters, Semester{
 				Name: strings.TrimSpace(h3.Text),
 			})
+		})
+
+		e.ForEach("a[href]", func(_ int, a *colly.HTMLElement) {
+			href := a.Attr("href")
+			if strings.HasPrefix(href, "/kurs/") {
+				c.Visit(e.Request.AbsoluteURL(href)) // Visit course links
+			}
 		})
 	})
 
