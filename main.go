@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 	"strings"
+	"sync"
+	"time"
 
 	"github.com/gocolly/colly/v2"
 )
@@ -31,13 +33,56 @@ type Program struct {
 func main() {
 	program := Program{}
 
-	semester := Semester{}
+	var mutex = sync.Mutex{} // Mutex to protect shared data
 
 	// Create a new collector
 	c := colly.NewCollector(
 		colly.AllowedDomains("studieinfo.liu.se"),
 		colly.UserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36"),
+		colly.Async(true),
 	)
+
+	c.Limit(&colly.LimitRule{
+		DomainGlob:  "*",
+		Parallelism: 2,
+		RandomDelay: 500 * time.Microsecond,
+	})
+
+	c.OnHTML("h1", func(e *colly.HTMLElement) {
+		parts := strings.SplitN(strings.TrimSpace(e.Text), ",", 2)
+		mutex.Lock()
+		defer mutex.Unlock()
+		if len(parts) > 0 {
+			program.Name = strings.TrimSpace(parts[0])
+			if len(parts) > 1 {
+				program.Credits = strings.TrimSpace(parts[1])
+			}
+		}
+	})
+
+	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
+		currentSemester := Semester{}
+		//var currentCourses []Course
+
+		e.ForEach("*", func(_ int, el *colly.HTMLElement) {
+			if el.Name == "h3" {
+				if currentSemester.Name != "" {
+					mutex.Lock()
+					program.Semesters = append(program.Semesters, currentSemester)
+					mutex.Unlock()
+				}
+				currentSemester = Semester{
+					Name:    strings.TrimSpace(el.Text),
+					Courses: []Course{},
+				}
+				//currentCourses = []Course{}
+			}
+			if el.Name == "a" {
+
+			}
+		})
+
+	})
 
 	// Print visited URLs
 	c.OnRequest(func(r *colly.Request) {
