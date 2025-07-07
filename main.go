@@ -35,6 +35,8 @@ func main() {
 
 	var mutex = sync.Mutex{} // Mutex to protect shared data
 
+	var wg sync.WaitGroup // WaitGroup to wait for all goroutines to finish
+
 	// Create a new collector
 	c := colly.NewCollector(
 		colly.AllowedDomains("studieinfo.liu.se"),
@@ -62,7 +64,7 @@ func main() {
 
 	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
 		currentSemester := Semester{}
-		//var currentCourses []Course
+		var currentCourses []Course
 
 		e.ForEach("*", func(_ int, el *colly.HTMLElement) {
 			if el.Name == "h3" {
@@ -75,10 +77,36 @@ func main() {
 					Name:    strings.TrimSpace(el.Text),
 					Courses: []Course{},
 				}
-				//currentCourses = []Course{}
+				currentCourses = []Course{}
 			}
 			if el.Name == "a" {
+				wg.Add(1)
 
+				url := e.Request.AbsoluteURL(el.Attr("href"))
+
+				courseCollector := c.Clone()
+				courseCollector.OnHTML("h1", func(h *colly.HTMLElement) {
+					defer wg.Done()
+					parts := strings.SplitN(strings.TrimSpace(h.Text), ",", 2)
+					course := Course{Url: url}
+					if len(parts) > 0 {
+						course.Name = strings.TrimSpace(parts[0])
+						if len(parts) > 1 {
+							course.Credits = strings.TrimSpace(parts[1])
+						}
+					}
+
+					mutex.Lock()
+					currentCourses = append(currentCourses, course)
+					mutex.Unlock()
+				})
+
+				go func() {
+					if err := courseCollector.Visit(url); err != nil {
+						log.Printf("Failed to visit course URL %s: %v\n", url, err)
+						wg.Done()
+					}
+				}()
 			}
 		})
 
