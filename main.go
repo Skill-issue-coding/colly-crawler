@@ -110,7 +110,29 @@ func main() {
 			}
 		})
 
+		if currentSemester.Name != "" {
+			mutex.Lock()
+			currentSemester.Courses = currentCourses
+			program.Semesters = append(program.Semesters, currentSemester)
+			mutex.Unlock()
+		}
+
 	})
+
+	// Start the scraping process
+	program.Url = "https://studieinfo.liu.se/program/6CMEN/5712#overview"
+	err := c.Visit(program.Url)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	wg.Wait() // Wait for all goroutines to finish
+
+	// Convert the program data to JSON
+	jsonData, err := json.MarshalIndent(program, "", "  ")
+	if err != nil {
+		log.Fatal("JSON marshaling error:", err)
+	}
 
 	// Print visited URLs
 	c.OnRequest(func(r *colly.Request) {
@@ -149,18 +171,6 @@ func main() {
 	c.OnError(func(r *colly.Response, err error) {
 		log.Println("Error:", err)
 	})
-
-	// Start the scraping process
-	err := c.Visit("https://studieinfo.liu.se/program/6CMEN/5712#overview")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Convert the program data to JSON
-	jsonData, err := json.MarshalIndent(program, "", "  ")
-	if err != nil {
-		log.Fatal("JSON marshaling error:", err)
-	}
 
 	// Save to file
 	err = os.WriteFile("program_data.json", jsonData, 0644)
