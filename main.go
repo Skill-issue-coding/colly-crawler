@@ -27,15 +27,13 @@ type Program struct {
 	Name      string     `json:"name"`
 	Credits   string     `json:"credits"`
 	Url       string     `json:"url"`
-	Semesters []Semester `json:"semsesters"`
+	Semesters []Semester `json:"semesters"`
 }
 
 func main() {
 	program := Program{}
-
-	var mutex = sync.Mutex{} // Mutex to protect shared data
-
-	var wg sync.WaitGroup // WaitGroup to wait for all goroutines to finish
+	var mutex = sync.Mutex{}
+	var wg sync.WaitGroup
 
 	// Create a new collector
 	c := colly.NewCollector(
@@ -51,35 +49,37 @@ func main() {
 	})
 
 	c.OnHTML("h1", func(e *colly.HTMLElement) {
+		print("found program name\n")
 		parts := strings.SplitN(strings.TrimSpace(e.Text), ",", 2)
 		mutex.Lock()
-		defer mutex.Unlock()
 		if len(parts) > 0 {
 			program.Name = strings.TrimSpace(parts[0])
 			if len(parts) > 1 {
 				program.Credits = strings.TrimSpace(parts[1])
 			}
 		}
+		mutex.Unlock()
 	})
 
 	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
-		currentSemester := Semester{}
-		var currentCourses []Course
+		print("found curriculum tab\n")
+		var currentSemester *Semester
 
 		e.ForEach("*", func(_ int, el *colly.HTMLElement) {
 			if el.Name == "h3" {
-				if currentSemester.Name != "" {
-					mutex.Lock()
-					program.Semesters = append(program.Semesters, currentSemester)
-					mutex.Unlock()
-				}
-				currentSemester = Semester{
+
+				semester := Semester{
 					Name:    strings.TrimSpace(el.Text),
 					Courses: []Course{},
 				}
-				currentCourses = []Course{}
+
+				currentSemester = &semester
+				mutex.Lock()
+				program.Semesters = append(program.Semesters, semester)
+				mutex.Unlock()
+
 			}
-			if el.Name == "a" {
+			if el.Name == "a" && isCourseLink(el.Attr("href")) && currentSemester != nil {
 				wg.Add(1)
 
 				url := e.Request.AbsoluteURL(el.Attr("href"))
@@ -87,6 +87,7 @@ func main() {
 				courseCollector := c.Clone()
 				courseCollector.OnHTML("h1", func(h *colly.HTMLElement) {
 					defer wg.Done()
+
 					parts := strings.SplitN(strings.TrimSpace(h.Text), ",", 2)
 					course := Course{Url: url}
 					if len(parts) > 0 {
@@ -97,25 +98,22 @@ func main() {
 					}
 
 					mutex.Lock()
-					currentCourses = append(currentCourses, course)
+					for i := range program.Semesters {
+						if program.Semesters[i].Name == currentSemester.Name {
+							program.Semesters[i].Courses = append(program.Semesters[i].Courses, course)
+							break
+						}
+					}
 					mutex.Unlock()
 				})
 
-				go func() {
-					if err := courseCollector.Visit(url); err != nil {
-						log.Printf("Failed to visit course URL %s: %v\n", url, err)
-						wg.Done()
-					}
-				}()
+				if err := courseCollector.Visit(url); err != nil {
+					log.Printf("Failed to visit course URL %s: %v\n", url, err)
+					wg.Done()
+				}
+
 			}
 		})
-
-		if currentSemester.Name != "" {
-			mutex.Lock()
-			currentSemester.Courses = currentCourses
-			program.Semesters = append(program.Semesters, currentSemester)
-			mutex.Unlock()
-		}
 
 	})
 
@@ -126,6 +124,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+	c.Wait()
 	wg.Wait() // Wait for all goroutines to finish
 
 	// Convert the program data to JSON
@@ -134,50 +133,17 @@ func main() {
 		log.Fatal("JSON marshaling error:", err)
 	}
 
-	// Print visited URLs
-	c.OnRequest(func(r *colly.Request) {
-		program.Url = r.URL.String()
-		fmt.Println("Visiting:", r.URL.String())
-	})
-
-	// Capture h1 separately (async)
-	c.OnHTML("h1", func(e *colly.HTMLElement) {
-		parts := strings.SplitN(strings.TrimSpace(e.Text), ",", 2)
-		if len(parts) >= 2 {
-			program.Name = strings.TrimSpace(parts[0])
-			if len(parts) >= 2 {
-				program.Credits = strings.TrimSpace(parts[1])
-			}
-		}
-	})
-
-	// Handle "Programplan" page
-	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
-		e.ForEach("h3", func(_ int, h3 *colly.HTMLElement) {
-			program.Semesters = append(program.Semesters, Semester{
-				Name: strings.TrimSpace(h3.Text),
-			})
-		})
-
-		e.ForEach("a[href]", func(_ int, a *colly.HTMLElement) {
-			href := a.Attr("href")
-			if strings.HasPrefix(href, "/kurs/") {
-				c.Visit(e.Request.AbsoluteURL(href)) // Visit course links
-			}
-		})
-	})
-
-	// Error handling
-	c.OnError(func(r *colly.Response, err error) {
-		log.Println("Error:", err)
-	})
-
-	// Save to file
-	err = os.WriteFile("program_data.json", jsonData, 0644)
-	if err != nil {
-		log.Fatal("File write error:", err)
+	if err = os.WriteFile("program_data.json", jsonData, 0644); err != nil {
+		log.Fatal(err)
 	}
 
 	fmt.Println("\nScraping complete! Data saved to program_data.json")
-	fmt.Println(string(jsonData)) // Print to console for verification
+	fmt.Printf("Found %d semesters:", len(program.Semesters))
+	for i, s := range program.Semesters {
+		fmt.Printf("Semester %d %s (%d courses):\n", i+1, s.Name, len(s.Courses))
+	}
+}
+
+func isCourseLink(href string) bool {
+	return strings.Contains(href, "/kurs/") || strings.Contains(href, "/course/")
 }
