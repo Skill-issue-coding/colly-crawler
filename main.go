@@ -80,6 +80,7 @@ func main() {
 
 			}
 			if el.Name == "a" && isCourseLink(el.Attr("href")) && currentSemester != nil {
+				semesterName := currentSemester.Name // Capture current semester name
 				wg.Add(1)
 
 				url := e.Request.AbsoluteURL(el.Attr("href"))
@@ -99,7 +100,7 @@ func main() {
 
 					mutex.Lock()
 					for i := range program.Semesters {
-						if program.Semesters[i].Name == currentSemester.Name {
+						if program.Semesters[i].Name == semesterName {
 							program.Semesters[i].Courses = append(program.Semesters[i].Courses, course)
 							break
 						}
