@@ -8,28 +8,68 @@
       "courses": [
         {
           "name": "Matematisk grundkurs",
+          "course_code": "TNA001",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA001/ht-2024"
-        },
-        {
-          "name": "Programmering grk",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TND012/ht-2024"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA001/ht-2024",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Digitala medier",
+          "course_code": "TNM088",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM088/ht-2024"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM088/ht-2024",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
-          "name": "Objektorienterad programmering",
+          "name": "Programmering grk",
+          "course_code": "TND012",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TND002/ht-2024"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TND012/ht-2024",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Linjär algebra",
+          "course_code": "TNA002",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA002/ht-2024"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA002/ht-2024",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Objektorienterad programmering",
+          "course_code": "TND002",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TND002/ht-2024",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -38,28 +78,68 @@
       "courses": [
         {
           "name": "Analys I",
+          "course_code": "TNA003",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA003/vt-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA003/vt-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Tillämpad matematik i teknik och naturvetenskap",
+          "course_code": "TNA005",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA005/vt-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA005/vt-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Introduktion till webbprogrammering och -publicering",
+          "course_code": "TNM115",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM115/vt-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM115/vt-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Analys II",
+          "course_code": "TNA004",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA004/vt-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA004/vt-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Datorgrafik",
+          "course_code": "TNM046",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM046/vt-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM046/vt-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -68,28 +148,68 @@
       "courses": [
         {
           "name": "Analys III",
+          "course_code": "TNA006",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA006/ht-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA006/ht-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Mekanik och vågfysik",
+          "course_code": "TNE043",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNE043/ht-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNE043/ht-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Kommunikation och användargränssnitt",
+          "course_code": "TNM040",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM040/ht-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM040/ht-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Vektoranalys",
+          "course_code": "TNA007",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA007/ht-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA007/ht-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Programmering i C++",
+          "course_code": "TNG033",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNG033/ht-2025"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNG033/ht-2025",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -98,28 +218,68 @@
       "courses": [
         {
           "name": "Tillämpad transformteori",
+          "course_code": "TNG032",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNG032"
-        },
-        {
-          "name": "3D Datorgrafik",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM061"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNG032",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Grafisk teknik",
+          "course_code": "TNM059",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM059"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM059",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "3D Datorgrafik",
+          "course_code": "TNM061",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM061",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Matematisk statistik",
+          "course_code": "TNG006",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNG006"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNG006",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Signaler och system",
+          "course_code": "TNG015",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNG015"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNG015",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -128,28 +288,68 @@
       "courses": [
         {
           "name": "Ljudfysik",
+          "course_code": "TFYA65",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TFYA65"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TFYA65",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Reglerteknik",
+          "course_code": "TNG028",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNG028"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNG028",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Tillämpad visualisering och virtuell verklighet",
+          "course_code": "TNM093",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM093"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM093",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Modellbygge och simulering",
+          "course_code": "TNG022",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNG022"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNG022",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Bildbehandling och bildanalys",
+          "course_code": "TNM087",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM087"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM087",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -157,29 +357,69 @@
       "name": "Termin 6 VT 2027",
       "courses": [
         {
-          "name": "Introduktion till artificiell intelligens",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM119"
+          "name": "Medietekniskt kandidatprojekt",
+          "course_code": "TNM094",
+          "credits": "18 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM094",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
-          "name": "Medietekniskt kandidatprojekt",
-          "credits": "18 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM094"
+          "name": "Introduktion till artificiell intelligens",
+          "course_code": "TNM119",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM119",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Introduktionskurs i interkulturell kompetens",
+          "course_code": "TINT01",
           "credits": "2 hp",
-          "url": "https://studieinfo.liu.se/kurs/TINT01"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TINT01",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Datastrukturer",
+          "course_code": "TND004",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TND004"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TND004",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Praktik",
+          "course_code": "TPTE06",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TPTE06"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TPTE06",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -187,79 +427,199 @@
       "name": "Termin 7 HT 2027",
       "courses": [
         {
-          "name": "Advanced English",
+          "name": "Projektledning",
+          "course_code": "TEIO87",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/THEN09"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TEIO87",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Teknik och etik",
+          "course_code": "TGTU94",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TGTU94"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TGTU94",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
-          "name": "Advanced Global Illumination and Rendering",
+          "name": "Advanced English",
+          "course_code": "THEN09",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNCG15"
-        },
-        {
-          "name": "Projektledning",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TEIO87"
-        },
-        {
-          "name": "Vetenskaplig visualisering",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM067"
-        },
-        {
-          "name": "Ljudteknik",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM103"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/THEN09",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Nätverksprogrammering och säkerhet",
+          "course_code": "TNM031",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM031"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM031",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Advanced Global Illumination and Rendering",
+          "course_code": "TNCG15",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNCG15",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Ljudteknik",
+          "course_code": "TNM103",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM103",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Vetenskaplig visualisering",
+          "course_code": "TNM067",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM067",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Maskininlärning för sociala medier",
+          "course_code": "TNM108",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM108"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM108",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Immaterialrätt",
+          "course_code": "TEAE11",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TEAE11"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TEAE11",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Matrismetoder för AI",
+          "course_code": "TNA010",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNA010"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNA010",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Avancerad bildbehandling",
+          "course_code": "TNM034",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM034"
-        },
-        {
-          "name": "Procedurella metoder för bilder",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM084"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM034",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Grafisk design och kommunikation",
+          "course_code": "TNM110",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM110"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM110",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Procedurella metoder för bilder",
+          "course_code": "TNM084",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM084",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Utvidgad verklighet (XR) - principer och programmering",
+          "course_code": "TNM116",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM116"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM116",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Medieproduktion för immersiva miljöer",
+          "course_code": "TNM091",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM091"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM091",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -268,63 +628,159 @@
       "courses": [
         {
           "name": "Industriell ekonomi",
+          "course_code": "TEIE53",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TEIE53"
-        },
-        {
-          "name": "Retorik i tal",
-          "credits": "text och bild, 6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNKA10"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TEIE53",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Interkulturell kompetens och interkulturell kommunikation",
+          "course_code": "TINT02",
           "credits": "fortsättningskurs, 6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TINT02"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TINT02",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Retorik i tal",
+          "course_code": "TNKA10",
+          "credits": "text och bild, 6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNKA10",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Bildreproduktion och bildkvalitet",
+          "course_code": "TNM097",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM097"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM097",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Strukturerade metoder för användarupplevelse (UX)",
+          "course_code": "TNM100",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM100"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM100",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Informationsvisualisering",
+          "course_code": "TNM111",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM111"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM111",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Bild- och ljudkompression",
+          "course_code": "TSBK38",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TSBK38"
-        },
-        {
-          "name": "Modellering och animering",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM079"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TSBK38",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Avancerad webbprogrammering",
+          "course_code": "TDDD27",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TDDD27"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TDDD27",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
-          "name": "Avancerad visuell dataanalys",
+          "name": "Modellering och animering",
+          "course_code": "TNM079",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM098"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM079",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Artificiell intelligens - principer och tekniker",
+          "course_code": "TNM096",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM096"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM096",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Avancerad visuell dataanalys",
+          "course_code": "TNM098",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM098",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Procedurell ljuddesign för användargränssnitt",
+          "course_code": "TNM113",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM113"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM113",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -332,59 +788,147 @@
       "name": "Termin 9 HT 2028",
       "courses": [
         {
-          "name": "Avancerad programvarudesign",
+          "name": "Bildteknik",
+          "course_code": "TNM089",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TDDE45"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM089",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
-          "name": "Bildteknik",
+          "name": "Avancerad programvarudesign",
+          "course_code": "TDDE45",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM089"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TDDE45",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Artificiell intelligens för interaktiv media",
+          "course_code": "TNM114",
           "credits": "projektkurs, 6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM114"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM114",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Vetenskaplig metod",
+          "course_code": "TNM107",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM107",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Teknik för avancerade datorspel",
+          "course_code": "TSBK03",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TSBK03"
-        },
-        {
-          "name": "Vetenskaplig metod",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM107"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TSBK03",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Interaktionsprogrammering",
+          "course_code": "TDDC73",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TDDC73"
-        },
-        {
-          "name": "Multicore- och GPU-Programmering",
-          "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TDDD56"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TDDC73",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Deep Learning för medieteknik",
+          "course_code": "TNM112",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TNM112"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TNM112",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
-          "name": "Vetenskaplig metod",
+          "name": "Multicore- och GPU-Programmering",
+          "course_code": "TDDD56",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TDDD89"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TDDD56",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Design och programmering av datorspel",
+          "course_code": "TDDD23",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TDDD23"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TDDD23",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
+        },
+        {
+          "name": "Vetenskaplig metod",
+          "course_code": "TDDD89",
+          "credits": "6 hp",
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TDDD89",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         },
         {
           "name": "Mjukvarutekniskt entreprenörskap",
+          "course_code": "TDDE02",
           "credits": "6 hp",
-          "url": "https://studieinfo.liu.se/kurs/TDDE02"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TDDE02",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     },
@@ -393,8 +937,16 @@
       "courses": [
         {
           "name": "Examensarbete",
+          "course_code": "TQXX33",
           "credits": "30 hp",
-          "url": "https://studieinfo.liu.se/kurs/TQXX33"
+          "vof": "",
+          "url": "https://studieinfo.liu.se/kurs/TQXX33",
+          "overview": {
+            "main_subject": ""
+          },
+          "course_plan": {},
+          "examinations": null,
+          "literature": null
         }
       ]
     }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 	"sync"
 	"time"
@@ -109,29 +110,42 @@ func main() {
 				url := e.Request.AbsoluteURL(el.Attr("href"))
 
 				courseCollector := c.Clone()
-				courseCollector.OnHTML("h1", func(h *colly.HTMLElement) {
-					defer wg.Done()
 
+				course := &Course{Url: url} // shared pointer between handlers
+
+				courseCollector.OnHTML("h1", func(h *colly.HTMLElement) {
 					parts := strings.SplitN(strings.TrimSpace(h.Text), ",", 2)
-					course := Course{Url: url}
 					if len(parts) > 0 {
 						course.Name = strings.TrimSpace(parts[0])
 						if len(parts) > 1 {
 							course.Credits = strings.TrimSpace(parts[1])
 						}
 					}
+				})
 
+				courseCollector.OnHTML("p.subtitle", func(h *colly.HTMLElement) {
+					code := strings.TrimSpace(h.Text)
+					if match, _ := regexp.MatchString(`^([A-Za-z]{3}\d{3}|[A-Za-z]{4}\d{2})$`, code); match && len(code) == 6 {
+						course.Code = code
+					}
+
+				})
+
+				// Once scraping of both elements is done, attach the course
+				courseCollector.OnScraped(func(_ *colly.Response) {
 					mutex.Lock()
+					defer mutex.Unlock()
 					for i := range program.Semesters {
 						if program.Semesters[i].Name == semesterName {
-							program.Semesters[i].Courses = append(program.Semesters[i].Courses, course)
+							program.Semesters[i].Courses = append(program.Semesters[i].Courses, *course)
 							break
 						}
 					}
-					mutex.Unlock()
+					wg.Done()
 				})
 
 				if err := courseCollector.Visit(url); err != nil {
+					// if !strings.Contains(err.Error(), "already visited") {} // Ignore already visited errors/logs
 					log.Printf("Failed to visit course URL %s: %v\n", url, err)
 					wg.Done()
 				}
