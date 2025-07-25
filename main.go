@@ -10,52 +10,12 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Skill-issue-coding/colly-crawler/models"
 	"github.com/gocolly/colly/v2"
 )
 
-type Literature struct {
-	// More to come
-}
-
-type Examinations struct {
-	// More to come
-}
-
-type Plan struct {
-	// More to come
-}
-
-type Overview struct {
-	Subject string `json:"main_subject"`
-	// More to come
-}
-
-type Course struct {
-	Name         string         `json:"name"`
-	Code         string         `json:"course_code"`
-	Credits      string         `json:"credits"`
-	VOF          string         `json:"vof"`
-	Url          string         `json:"url"`
-	Overview     Overview       `json:"overview"`
-	Plan         Plan           `json:"course_plan"`
-	Examinations []Examinations `json:"examinations"`
-	Literature   []Literature   `json:"literature"`
-}
-
-type Semester struct {
-	Name    string   `json:"name"`
-	Courses []Course `json:"courses"`
-}
-
-type Program struct {
-	Name      string     `json:"name"`
-	Credits   string     `json:"credits"`
-	Url       string     `json:"url"`
-	Semesters []Semester `json:"semesters"`
-}
-
 func main() {
-	program := Program{}
+	program := models.Program{}
 	var mutex = sync.Mutex{}
 	var wg sync.WaitGroup
 
@@ -87,14 +47,14 @@ func main() {
 
 	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
 		print("found curriculum tab\n")
-		var currentSemester *Semester
+		var currentSemester *models.Semester
 
 		e.ForEach("*", func(_ int, el *colly.HTMLElement) {
 			if el.Name == "h3" {
 
-				semester := Semester{
+				semester := models.Semester{
 					Name:    strings.TrimSpace(el.Text),
-					Courses: []Course{},
+					Courses: []models.Course{},
 				}
 
 				currentSemester = &semester
@@ -111,7 +71,7 @@ func main() {
 
 				courseCollector := c.Clone()
 
-				course := &Course{Url: url} // shared pointer between handlers
+				course := &models.Course{Url: url} // shared pointer between handlers
 
 				courseCollector.OnHTML("h1", func(h *colly.HTMLElement) {
 					parts := strings.SplitN(strings.TrimSpace(h.Text), ",", 2)
