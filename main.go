@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"regexp"
+	"path/filepath"
+
+	//"regexp"
 	"strings"
 	"sync"
 	"time"
@@ -18,6 +20,9 @@ func main() {
 	program := models.Program{}
 	var mutex = sync.Mutex{}
 	var wg sync.WaitGroup
+
+	outputDir := "data"
+	outputFile := "test.json"
 
 	// Create a new collector
 	c := colly.NewCollector(
@@ -45,7 +50,7 @@ func main() {
 		mutex.Unlock()
 	})
 
-	c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
+	/* c.OnHTML("div.tab-pane#curriculum", func(e *colly.HTMLElement) {
 		print("found curriculum tab\n")
 		var currentSemester *models.Semester
 
@@ -113,7 +118,7 @@ func main() {
 			}
 		})
 
-	})
+	}) */
 
 	// Start the scraping process
 	program.Url = "https://studieinfo.liu.se/program/6CMEN/5712#overview"
@@ -131,11 +136,20 @@ func main() {
 		log.Fatal("JSON marshaling error:", err)
 	}
 
-	if err = os.WriteFile("program_data.json", jsonData, 0644); err != nil {
-		log.Fatal(err)
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		log.Fatal("Failed to create output directory:", err)
 	}
 
-	fmt.Println("\nScraping complete! Data saved to program_data.json")
+	filePath := filepath.Join(outputDir, outputFile)
+	if err := os.WriteFile(filePath, jsonData, 0644); err != nil {
+		log.Fatal("Failed to write JSON file:", err)
+	}
+
+	/* if err = os.WriteFile("data/program_data1.json", jsonData, 0644); err != nil {
+		log.Fatal(err)
+	} */
+
+	fmt.Println("\nScraping complete! Data saved to data/program_data.json")
 	fmt.Printf("Found %d semesters:", len(program.Semesters))
 	for i, s := range program.Semesters {
 		fmt.Printf("Semester %d %s (%d courses):\n", i+1, s.Name, len(s.Courses))
