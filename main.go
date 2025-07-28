@@ -6,17 +6,12 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"regexp"
-	"strings"
-	"sync"
-	"time"
 
-	"github.com/Skill-issue-coding/colly-crawler/models"
-	"github.com/gocolly/colly/v2"
+	"github.com/Skill-issue-coding/colly-crawler/scraper"
 )
 
 func main() {
-	program := models.Program{}
+	/* program := models.Program{}
 	var mutex = sync.Mutex{}
 	var wg sync.WaitGroup
 
@@ -117,29 +112,27 @@ func main() {
 			}
 		})
 
-	})
+	}) */
 
 	// Start the scraping process
-	program.Url = "https://studieinfo.liu.se/program/6CMEN/5712#overview"
-	err := c.Visit(program.Url)
+	programUrl := "https://studieinfo.liu.se/program/6CMEN/5712#overview"
+	program, err := scraper.ScrapeProgram(programUrl)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	c.Wait()
-	wg.Wait() // Wait for all goroutines to finish
-
-	// Convert the program data to JSON
-	jsonData, err := json.MarshalIndent(program, "", "  ")
-	if err != nil {
-		log.Fatal("JSON marshaling error:", err)
-	}
+	outputDir := "data"
+	outputFile := "test.json"
 
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		log.Fatal("Failed to create output directory:", err)
 	}
 
+	// Convert the program data to JSON
+	jsonData, _ := json.MarshalIndent(program, "", "  ")
+
 	filePath := filepath.Join(outputDir, outputFile)
+
 	if err := os.WriteFile(filePath, jsonData, 0644); err != nil {
 		log.Fatal("Failed to write JSON file:", err)
 	}
@@ -149,8 +142,4 @@ func main() {
 	for i, s := range program.Semesters {
 		fmt.Printf("Semester %d %s (%d courses):\n", i+1, s.Name, len(s.Courses))
 	}
-}
-
-func isCourseLink(href string) bool {
-	return strings.Contains(href, "/kurs/") || strings.Contains(href, "/course/")
 }
