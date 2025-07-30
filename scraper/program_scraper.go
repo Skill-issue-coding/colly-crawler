@@ -1,6 +1,7 @@
 package scraper
 
 import (
+	"log"
 	"strings"
 	"sync"
 
@@ -28,9 +29,9 @@ func ScrapeProgram(url string) (models.Program, error) {
 		parts := strings.SplitN(strings.TrimSpace(e.Text), ",", 2)
 		mutex.Lock()
 		if len(parts) > 0 {
-			program.Name = parts[0]
+			program.Name = strings.TrimSpace(parts[0])
 			if len(parts) > 1 {
-				program.Credits = parts[1]
+				program.Credits = strings.TrimSpace(parts[1])
 			}
 		}
 		mutex.Unlock()
@@ -44,17 +45,18 @@ func ScrapeProgram(url string) (models.Program, error) {
 		e.ForEach("*", func(_ int, el *colly.HTMLElement) {
 			if el.Name == "h3" {
 
-				semester := models.Semester{Name: strings.TrimSpace(el.Text)}
-				currentSemester = &semester
-
 				mutex.Lock()
-				program.Semesters = append(program.Semesters, semester)
+				program.Semesters = append(program.Semesters, models.Semester{
+					Name: strings.TrimSpace(el.Text),
+				})
+				currentSemester = &program.Semesters[len(program.Semesters)-1]
 				mutex.Unlock()
 
 			}
 			if el.Name == "a" && isCourseLink(el.Attr("href")) && currentSemester != nil {
 				semesterName := currentSemester.Name // Capture current semester name
 				url := e.Request.AbsoluteURL(el.Attr("href"))
+				log.Printf("Found course link: %s for semester %s\n", url, semesterName)
 				wg.Add(1)
 
 				courseCollector := c.Clone()
@@ -68,12 +70,12 @@ func ScrapeProgram(url string) (models.Program, error) {
 		return program, err
 	}
 
+	c.Wait()
+
 	go func() {
 		wg.Wait()
 		close(courseChan)
 	}()
-
-	c.Wait()
 
 	for sc := range courseChan {
 		mutex.Lock()
