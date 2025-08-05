@@ -2,6 +2,7 @@ package scraper
 
 import (
 	"log"
+	"regexp"
 	"strings"
 	"sync"
 
@@ -35,6 +36,14 @@ func ScrapeProgram(url string) (models.Program, error) {
 			}
 		}
 		mutex.Unlock()
+	})
+
+	// Program code used in course_scraper for other checks
+	c.OnHTML("p.subtitle", func(e *colly.HTMLElement) {
+		code := strings.TrimSpace(e.Text)
+		if match, _ := regexp.MatchString(`^([A-Za-z]{4}\d{1})$`, code); match && len(code) == 5 {
+			programCode := code
+		}
 	})
 
 	// Semester and course links
