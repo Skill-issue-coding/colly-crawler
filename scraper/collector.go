@@ -16,7 +16,8 @@ func NewCollector() *colly.Collector {
 
 	c.Limit(&colly.LimitRule{
 		DomainGlob:  "*",
-		Parallelism: 2,
+		Parallelism: 1,               // Parallel scraping channels (1 for now to avoid ip bans),
+		Delay:       1 * time.Second, // Delay between requests, change later
 		RandomDelay: 500 * time.Microsecond,
 	})
 

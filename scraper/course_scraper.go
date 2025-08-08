@@ -11,7 +11,7 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
-func ScrapeCourse(url string, semesterName string, c *colly.Collector, wg *sync.WaitGroup, courseChan chan<- scrapedCourse) {
+func ScrapeCourse(url string, semesterName string, c *colly.Collector, wg *sync.WaitGroup, courseChan chan<- scrapedCourse, programCode string) {
 	defer wg.Done()
 	course := &models.Course{Url: url} // shared pointer between handlers
 
@@ -32,7 +32,17 @@ func ScrapeCourse(url string, semesterName string, c *colly.Collector, wg *sync.
 		if match, _ := regexp.MatchString(`^([A-Za-z]{3}\d{3}|[A-Za-z]{4}\d{2})$`, code); match && len(code) == 6 {
 			course.Code = code
 		}
+	})
 
+	c.OnHTML("table.study-guide-table", func(e *colly.HTMLElement) {
+		e.ForEach("tr", func(_ int, row *colly.HTMLElement) {
+			codeCell := row.ChildText("td:nth-of-type(1)")
+			vofCell := row.ChildText("td:nth-last-of-type(1)")
+
+			if strings.EqualFold(codeCell, programCode) {
+				course.VOF = strings.TrimSpace(vofCell)
+			}
+		})
 	})
 
 	// Once scraping of both elements is done, attach the course
