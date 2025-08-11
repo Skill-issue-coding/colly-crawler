@@ -40,7 +40,11 @@ func ScrapeCourse(url string, semesterName string, c *colly.Collector, wg *sync.
 			vofCell := row.ChildText("td:nth-last-of-type(1)")
 
 			if strings.EqualFold(codeCell, programCode) {
-				course.VOF = strings.TrimSpace(vofCell)
+				course.Overview.Period = row.ChildText("td:nth-of-type(4)")
+				course.Overview.Block = row.ChildText("td:nth-of-type(5)")
+				course.Overview.Language = row.ChildText("td:nth-of-type(6)")
+				course.Overview.Campus = row.ChildText("td:nth-of-type(7)")
+				course.Overview.VOF = strings.TrimSpace(vofCell)
 			}
 		})
 	})
