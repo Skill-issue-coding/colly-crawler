@@ -13,13 +13,18 @@ type Plan struct {
 }
 
 type Overview struct {
-	Subject  string `json:"main_subject"`
-	Period   string `json:"period"`
-	Block    string `json:"block"`
-	Language string `json:"language"`
-	Campus   string `json:"campus"`
-	VOF      string `json:"vof"`
-	// More to come
+	Subject        string `json:"main_subject"`
+	Level          string `json:"education_level"`
+	Type           string `json:"course_type"`
+	Examiner       string `json:"examiner"`
+	Director       string `json:"study_director"`
+	ScheduledHours string `json:"scheduled_hours"`
+	SelfStudyHours string `json:"self_study_hours"`
+	Period         string `json:"period"`
+	Block          string `json:"block"`
+	Language       string `json:"language"`
+	Campus         string `json:"campus"`
+	VOF            string `json:"vof"`
 }
 
 type Course struct {

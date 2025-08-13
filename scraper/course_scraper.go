@@ -7,6 +7,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/Skill-issue-coding/colly-crawler/models"
 	"github.com/gocolly/colly/v2"
 )
@@ -32,6 +33,43 @@ func ScrapeCourse(url string, semesterName string, c *colly.Collector, wg *sync.
 		if match, _ := regexp.MatchString(`^([A-Za-z]{3}\d{3}|[A-Za-z]{4}\d{2})$`, code); match && len(code) == 6 {
 			course.Code = code
 		}
+	})
+
+	c.OnHTML("section.overview-content", func(e *colly.HTMLElement) {
+		var currentLabel string
+
+		e.DOM.Contents().Each(func(i int, s *goquery.Selection) {
+			if goquery.NodeName(s) == "h2" {
+				currentLabel = strings.TrimSpace(s.Text())
+				return
+			}
+
+			if currentLabel != "" {
+				value := strings.TrimSpace(s.Text())
+
+				if value != "" {
+					switch currentLabel {
+					case "Huvudområde":
+						course.Overview.Subject = value
+					case "Utbildningsnivå":
+						course.Overview.Level = value
+					case "Kurstyp":
+						course.Overview.Type = value
+					case "Examinator":
+						course.Overview.Examiner = value
+					case "Studierektor eller motsvarande":
+						course.Overview.Director = value
+					case "Undervisningstid":
+						parts := strings.Split(value, "\n")
+						if len(parts) >= 2 {
+							course.Overview.ScheduledHours = strings.TrimSpace(parts[0])
+							course.Overview.SelfStudyHours = strings.TrimSpace(parts[1])
+						}
+					}
+					currentLabel = ""
+				}
+			}
+		})
 	})
 
 	c.OnHTML("table.study-guide-table", func(e *colly.HTMLElement) {
