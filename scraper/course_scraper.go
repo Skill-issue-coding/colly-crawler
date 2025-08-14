@@ -39,35 +39,40 @@ func ScrapeCourse(url string, semesterName string, c *colly.Collector, wg *sync.
 		var currentLabel string
 
 		e.DOM.Contents().Each(func(i int, s *goquery.Selection) {
-			if goquery.NodeName(s) == "h2" {
-				currentLabel = strings.TrimSpace(s.Text())
+			nodeName := goquery.NodeName(s)
+			text := strings.TrimSpace(s.Text())
+
+			if nodeName == "h2" {
+				currentLabel = text
 				return
 			}
 
-			if currentLabel != "" {
-				value := strings.TrimSpace(s.Text())
+			if currentLabel != "" && text != "" && nodeName == "#text" {
+				switch currentLabel {
+				case "Huvudområde":
+					course.Overview.Subject = text
+				case "Utbildningsnivå":
+					course.Overview.Level = text
+				case "Kurstyp":
+					course.Overview.Type = text
+				case "Examinator":
+					course.Overview.Examiner = text
+				case "Studierektor eller motsvarande":
+					course.Overview.Director = text
+				case "Undervisningstid":
+					fullText := s.Parent().Text()
 
-				if value != "" {
-					switch currentLabel {
-					case "Huvudområde":
-						course.Overview.Subject = value
-					case "Utbildningsnivå":
-						course.Overview.Level = value
-					case "Kurstyp":
-						course.Overview.Type = value
-					case "Examinator":
-						course.Overview.Examiner = value
-					case "Studierektor eller motsvarande":
-						course.Overview.Director = value
-					case "Undervisningstid":
-						parts := strings.Split(value, "\n")
-						if len(parts) >= 2 {
-							course.Overview.ScheduledHours = strings.TrimSpace(parts[0])
-							course.Overview.SelfStudyHours = strings.TrimSpace(parts[1])
-						}
+					// Split by "Rekommenderad"
+					parts := strings.Split(fullText, "Rekommenderad")
+					if len(parts) >= 2 {
+						scheduled := strings.TrimSpace(parts[0])
+						recommended := "Rekommenderad" + strings.TrimSpace(parts[1])
+
+						course.Overview.ScheduledHours = extractHours(scheduled)
+						course.Overview.SelfStudyHours = extractHours(recommended)
 					}
-					currentLabel = ""
 				}
+				currentLabel = ""
 			}
 		})
 	})
@@ -101,4 +106,13 @@ func ScrapeCourse(url string, semesterName string, c *colly.Collector, wg *sync.
 		log.Printf("Failed to visit course URL %s: %v\n", url, err)
 	}
 	c.Wait()
+}
+
+func extractHours(s string) string {
+	re := regexp.MustCompile(`(\d+)\s*h\b`)
+	matches := re.FindStringSubmatch(s)
+	if len(matches) > 1 {
+		return matches[1] + " h"
+	}
+	return s
 }
